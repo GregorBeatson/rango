@@ -55,16 +55,9 @@ def about(request):
         print("TEST COOKIE WORKED!")
         request.session.delete_test_cookie()
 
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "This tutorial has been put together by Gregor Beatson."}
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
-
+    context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
-    print context_dict['visits']
 
     response = render(request, 'rango/about.html', context_dict)
 
